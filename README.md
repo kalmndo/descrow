@@ -137,21 +137,9 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
-
-- **Website**: [trustlessescrow.com](https://trustlessescrow.com)
-- **Documentation**: [docs.trustlessescrow.com](https://docs.trustlessescrow.com)
-- **Discord**: [Join our community](https://discord.gg/trustlessescrow)
-- **Twitter**: [@TrustlessEscrow](https://twitter.com/trustlessescrow)
-
-## 🆘 Support
-
-- **Help Center**: [help.trustlessescrow.com](https://help.trustlessescrow.com)
-- **Contact**: [support@trustlessescrow.com](mailto:support@trustlessescrow.com)
-- **Status Page**: [status.trustlessescrow.com](https://status.trustlessescrow.com)
+Address
+0xe8b359b28060541491c468e5ed632e2a82d5f46840d47b1b29e9619817b9f276
 
 ---
-
-**Built with ❤️ by the TrustlessEscrow team**
 
 *Securing the future of Web3 transactions, one smart contract at a time.*
