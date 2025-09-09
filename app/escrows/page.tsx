@@ -6,7 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Shield, ArrowLeft, Search, Filter, Clock, CheckCircle, XCircle, AlertTriangle, Eye, ExternalLink } from "lucide-react"
+import { Search, Filter, Clock, CheckCircle, XCircle, AlertTriangle, Eye, ExternalLink, Shield } from "lucide-react"
+import { useWallet } from "@/contexts/WalletContext"
+import { Header } from "@/components/Header"
 import Link from "next/link"
 
 // Mock data for escrows
@@ -98,6 +100,7 @@ const ROLE_CONFIG = {
 }
 
 export default function MyEscrowsPage() {
+  const { isConnected, account } = useWallet()
   const [searchTerm, setSearchTerm] = useState("")
   const [roleFilter, setRoleFilter] = useState<string>("all")
   const [statusFilter, setStatusFilter] = useState<string>("all")
@@ -147,21 +150,7 @@ export default function MyEscrowsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Shield className="h-8 w-8 text-accent" />
-            <span className="text-xl font-bold text-foreground">Descrow</span>
-          </div>
-          <Link href="/">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <Header showBackButton={true} backHref="/" backLabel="Back to Home" />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-6xl">
@@ -170,6 +159,13 @@ export default function MyEscrowsPage() {
           <p className="text-muted-foreground">
             Manage and track all your escrow transactions
           </p>
+          {!isConnected && (
+            <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-blue-800 text-sm">
+                <strong>Connect Wallet:</strong> Connect your wallet to view your escrow transactions.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Filters and Search */}
@@ -277,10 +273,10 @@ export default function MyEscrowsPage() {
                     </div>
                     <div className="flex items-center space-x-2">
                       <Button variant="outline" size="sm" asChild>
-                        <a href={`/escrow/${escrow.id}`}>
+                        <Link href={`/escrow/${escrow.id}`}>
                           <Eye className="h-4 w-4 mr-2" />
                           View Details
-                        </a>
+                        </Link>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
                         <a href={`https://polkadot.subscan.io/extrinsic/${escrow.id}`} target="_blank" rel="noopener noreferrer">

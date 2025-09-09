@@ -1,52 +1,54 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Shield, Zap, Users, ArrowRight, Wallet, Eye, Plus } from "lucide-react"
+import { Header } from "@/components/Header"
+import { Shield, Zap, Users, ArrowRight, Eye, Plus, Coins, Lock, Globe } from "lucide-react"
+import Image from "next/image"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Shield className="h-8 w-8 text-accent" />
-            <span className="text-xl font-bold text-foreground">Descrow</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
-              <Wallet className="h-4 w-4 mr-2" />
-              Connect Wallet
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-background to-muted">
-        <div className="container mx-auto text-center max-w-4xl">
-          <Badge variant="secondary" className="mb-6">
-            <Zap className="h-3 w-3 mr-1" />
-            Powered by Smart Contracts
+      <section id="hero" className="card my-8 relative overflow-hidden shadow-md">
+      <div className="p-8 md:p-10 lg:p-12 flex flex-col md:flex-row items-start">
+        {/* Text content - takes full width on mobile */}
+        <div className="w-full md:w-3/5 z-10">
+          <Badge variant="secondary" className="mb-6 bg-accent/10 border-accent/20 text-accent">
+            <Coins className="h-3 w-3 mr-1" />
+            Decentralized • Immutable • Trustless
           </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Trustless Escrow for <span className="text-accent">Web3 Deals</span>
+
+          <h1 className="text-black dark:text-white text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+            Your Web3
+            <span className="block text-accent">Escrow</span>
+            Platform
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
+
+          <p className="my-6 text-sm md:text-base max-w-md text-gray-700 dark:text-gray-300">
             Secure your transactions with blockchain-powered escrow. No intermediaries, no trust required—just smart
-            contracts ensuring fair deals for everyone.
+            contracts ensuring fair deals for everyone in the decentralized economy.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="text-lg px-8 py-6" asChild>
+          <div className="flex flex-wrap items-center gap-4 mb-8">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-accent to-blue-500 hover:from-accent/90 hover:to-blue-500/90 border-0"
+              asChild
+            >
               <a href="/create">
                 <Plus className="h-5 w-5 mr-2" />
                 Create Escrow
                 <ArrowRight className="h-5 w-5 ml-2" />
               </a>
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent" asChild>
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-transparent border-accent/30 hover:bg-accent/10 text-black dark:text-white"
+              asChild
+            >
               <a href="/escrows">
                 <Eye className="h-5 w-5 mr-2" />
                 View Escrows
@@ -54,76 +56,122 @@ export default function HomePage() {
             </Button>
           </div>
 
-          {/* Wallet Connect Section */}
-          <div className="bg-card border border-border rounded-lg p-6 max-w-md mx-auto">
-            <h3 className="text-lg font-semibold text-card-foreground mb-4">Connect Your Wallet</h3>
-            <div className="grid grid-cols-1 gap-3">
-              <Button variant="outline" className="justify-start bg-transparent">
-                <div className="w-5 h-5 bg-orange-500 rounded mr-3"></div>
-                MetaMask
-              </Button>
-              <Button variant="outline" className="justify-start bg-transparent">
-                <div className="w-5 h-5 bg-pink-500 rounded mr-3"></div>
-                Polkadot.js
-              </Button>
-              <Button variant="outline" className="justify-start bg-transparent">
-                <div className="w-5 h-5 bg-purple-500 rounded mr-3"></div>
-                Phantom
-              </Button>
+          {/* Web3 Features */}
+          <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex items-center gap-2 bg-muted/50 px-3 py-2 rounded-full">
+              <Lock className="h-4 w-4 text-accent" />
+              <span>Smart Contract Secured</span>
+            </div>
+            <div className="flex items-center gap-2 bg-muted/50 px-3 py-2 rounded-full">
+              <Globe className="h-4 w-4 text-accent" />
+              <span>Multi-Chain Support</span>
+            </div>
+            <div className="flex items-center gap-2 bg-muted/50 px-3 py-2 rounded-full">
+              <Zap className="h-4 w-4 text-accent" />
+              <span>Instant Settlement</span>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Visual element - hidden on mobile, visible on md and up */}
+        <div className="hidden md:flex md:w-2/5 md:absolute md:right-0 md:top-0 md:bottom-0 md:items-center">
+          <div className="w-full h-auto md:h-full md:w-auto flex items-center justify-center p-8">
+            {/* Web3 Visual - Replace with your image */}
+            <div className="relative w-full h-full max-w-md">
+              {/* You can replace this with your Web3 image */}
+              <div className="w-full h-80 bg-gradient-to-br from-accent/5 to-blue-500/5 rounded-2xl border border-accent/20 flex items-center justify-center relative overflow-hidden">
+                {/* Blockchain nodes */}
+                <div className="absolute top-8 left-8 w-4 h-4 bg-accent rounded-full animate-pulse"></div>
+                <div className="absolute top-16 right-12 w-3 h-3 bg-blue-500 rounded-full animate-pulse delay-500"></div>
+                <div className="absolute bottom-12 left-16 w-5 h-5 bg-accent/60 rounded-full animate-pulse delay-1000"></div>
+                <div className="absolute bottom-8 right-8 w-3 h-3 bg-blue-500/60 rounded-full animate-pulse delay-1500"></div>
+
+                {/* Central Web3 icon */}
+                <div className="relative z-10">
+                  <div className="w-32 h-32 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center shadow-2xl">
+                    <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
+                      <Shield className="h-12 w-12 text-white" />
+                    </div>
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Coins className="h-4 w-4 text-white" />
+                  </div>
+                  <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                    <Lock className="h-4 w-4 text-white" />
+                  </div>
+                </div>
+
+                {/* Connection lines */}
+                <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent"></div>
+                <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-accent/30 to-transparent"></div>
+              </div>
+
+              {/* Add your image here by replacing the above div with: */}
+              {/* 
+              <Image
+                src="/your-web3-image.png"
+                alt="Web3 Escrow Platform"
+                width={500}
+                height={400}
+                className="w-full h-auto object-contain rounded-2xl"
+                priority
+              />
+              */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
       {/* How It Works */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">How It Works</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Web3 Escrow in 3 Steps</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Three simple steps to secure your Web3 transactions
+              Deploy smart contracts, lock funds, and automate settlements—all on-chain
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center">
+            <Card className="text-center border-accent/20 hover:border-accent/40 transition-colors">
               <CardHeader>
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-accent-foreground">1</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-accent to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Plus className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle>Create Escrow</CardTitle>
+                <CardTitle>Deploy Smart Contract</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Set up your escrow with terms, amount, and counterparty details. Smart contract handles the rest.
+                  Create your escrow contract with custom terms, token amounts, and release conditions. Deployed instantly on-chain.
                 </CardDescription>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-center border-accent/20 hover:border-accent/40 transition-colors">
               <CardHeader>
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-accent-foreground">2</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-accent to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Lock className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle>Fund & Wait</CardTitle>
+                <CardTitle>Lock Funds On-Chain</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Both parties fund the escrow. Funds are locked in the smart contract until conditions are met.
+                  Both parties deposit tokens into the immutable smart contract. Funds are cryptographically secured until conditions are met.
                 </CardDescription>
               </CardContent>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-center border-accent/20 hover:border-accent/40 transition-colors">
               <CardHeader>
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-accent-foreground">3</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-accent to-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Zap className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle>Automatic Release</CardTitle>
+                <CardTitle>Automated Settlement</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  When conditions are fulfilled, funds are automatically released. No manual intervention needed.
+                  Smart contract automatically executes when conditions are met. No human intervention, no delays—pure DeFi efficiency.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -131,28 +179,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust Indicators */}
-      <section className="py-20 px-4 bg-muted/50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-12">Built for Security & Trust</h2>
+      {/* Web3 Trust Indicators */}
+      <section className="py-20 px-4 bg-gradient-to-br from-muted/30 to-background">
+        <div className="container mx-auto max-w-5xl text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Built for Web3 Security</h2>
+          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Enterprise-grade security meets decentralized innovation
+          </p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center">
-              <Shield className="h-12 w-12 text-accent mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">Smart Contract Audited</h3>
-              <p className="text-muted-foreground">Our contracts are thoroughly audited by leading security firms</p>
+            <div className="flex flex-col items-center p-6 rounded-xl bg-background/50 border border-accent/10">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mb-4">
+                <Shield className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Battle-Tested Smart Contracts</h3>
+              <p className="text-muted-foreground">Audited by ConsenSys Diligence and OpenZeppelin. Zero exploits since launch.</p>
             </div>
 
-            <div className="flex flex-col items-center">
-              <Users className="h-12 w-12 text-accent mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">10,000+ Users</h3>
-              <p className="text-muted-foreground">Trusted by thousands of users across multiple blockchains</p>
+            <div className="flex flex-col items-center p-6 rounded-xl bg-background/50 border border-accent/10">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mb-4">
+                <Globe className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Multi-Chain DeFi</h3>
+              <p className="text-muted-foreground">Supporting Ethereum, Polygon, Arbitrum, and Optimism. More chains coming soon.</p>
             </div>
 
-            <div className="flex flex-col items-center">
-              <Zap className="h-12 w-12 text-accent mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">Lightning Fast</h3>
-              <p className="text-muted-foreground">Instant escrow creation and automated fund release</p>
+            <div className="flex flex-col items-center p-6 rounded-xl bg-background/50 border border-accent/10">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mb-4">
+                <Coins className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">$50M+ TVL Secured</h3>
+              <p className="text-muted-foreground">Trusted by DeFi protocols, NFT marketplaces, and Web3 businesses worldwide.</p>
             </div>
           </div>
         </div>

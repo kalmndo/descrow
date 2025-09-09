@@ -7,7 +7,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Shield, ArrowLeft, Loader2, CheckCircle, ExternalLink } from "lucide-react"
+import { Loader2, CheckCircle, ExternalLink } from "lucide-react"
+import { useWallet } from "@/contexts/WalletContext"
+import { Header } from "@/components/Header"
 import Link from "next/link"
 
 interface EscrowFormData {
@@ -18,6 +20,7 @@ interface EscrowFormData {
 }
 
 export default function CreateEscrowPage() {
+  const { isConnected, account } = useWallet()
   const [formData, setFormData] = useState<EscrowFormData>({
     sellerAddress: "",
     amount: "",
@@ -101,21 +104,7 @@ export default function CreateEscrowPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Shield className="h-8 w-8 text-accent" />
-            <span className="text-xl font-bold text-foreground">Descrow</span>
-          </div>
-          <Link href="/">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <Header showBackButton={true} backHref="/" backLabel="Back to Home" />
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 max-w-2xl">
@@ -124,6 +113,13 @@ export default function CreateEscrowPage() {
           <p className="text-muted-foreground">
             Set up a secure escrow contract for your Web3 transaction
           </p>
+          {!isConnected && (
+            <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-yellow-800 text-sm">
+                <strong>Wallet Required:</strong> Please connect your wallet to create an escrow.
+              </p>
+            </div>
+          )}
         </div>
 
         <Card>
@@ -225,7 +221,7 @@ export default function CreateEscrowPage() {
                 type="submit" 
                 className="w-full" 
                 size="lg"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !isConnected}
               >
                 {isSubmitting ? (
                   <>
